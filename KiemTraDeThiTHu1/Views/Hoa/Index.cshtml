@@ -11,6 +11,17 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+@* <div class="col-md-4">
+    <form asp-action="Index" method="get">
+        <div class="form-group">
+            <label for="searchTerm">Tìm kiếm:</label>
+            <input type="text" name="name" class="form-control" placeholder="Nhập từ khóa..." />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+        </div>
+    </form>
+</div> *@
 <table class="table">
     <thead>
         <tr>
@@ -35,7 +46,9 @@
             <td>
                 <a asp-action="Update" asp-route-id="@item.HoaId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.HoaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.HoaId">Delete</a>
+                    <a asp-action="Delete" asp-route-id="@item.HoaId">Delete</a> |
+                    <a asp-action="RoleBackEdit" asp-route-id="@item.HoaId">RoleBackEdit</a>
+
             </td>
         </tr>
 }
