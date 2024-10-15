@@ -1,18 +1,17 @@
-﻿using KiemTraDeThiTHu1.models;
-using KiemTraDeThiTHu1.Service;
+using Final_Net103.Context;
+using Final_Net103.DomainClass;
+using Final_Net103.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<CaService>();
+builder.Services.AddSingleton<MyContext2>();
 builder.Services.AddSession(option =>
 {
-    option.IdleTimeout = TimeSpan.FromSeconds(15); // Set timeout = 5 giây
-}); // Thêm session
-builder.Services.AddSingleton<HoaService>();
-builder.Services.AddSingleton<ThucVatDB2Context>();
-
-
+    option.IdleTimeout = TimeSpan.FromSeconds(15); // Set timeout = 5 gi�y
+}); // Th�m session
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,13 +24,13 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
-app.UseSession(); // Khi báo có sử dụng session
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Hoa}/{action=Index}/{id?}");
+    pattern: "{controller=Ca}/{action=Index}/{id?}");
 
 app.Run();
